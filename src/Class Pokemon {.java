@@ -13,7 +13,12 @@ Class Pokemon {
        this.nom = nom
     }
 
-    public getAttaqueByIndex{
-        public attaque
+    public Attaque getAttaqueByIndex(int index){
+        return attaques[index];
+    }
+
+    public void attaquer(Attaque attaque, Pokemon adversaire){
+        int degats = attaque.puissance + this.attaque - adversaire.defense;
+        adversaire.pv = adversaire.pv - degats;
     }
 }
