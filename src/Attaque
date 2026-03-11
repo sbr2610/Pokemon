@@ -1,0 +1,19 @@
+public Class Attaque{
+    private String nom;
+    private int puissance;
+    private int precision;
+    private Type type;
+    private int priorite;
+
+    public Attaque(int puissance, int precision, String nom, Type type,int priorite){
+        this.nom = nom;
+        this.puissance = puissance;
+        this.precision = precision;
+        this.type = type;
+        this.priorite = priorite
+    }
+
+    public Type getType(){
+        return this.type;
+    }
+}

@@ -1,0 +1,10 @@
+public Class JoueurHumain{
+    private int nbBadge;
+    private boolean badges [8];
+    priavte int nbVictoire;
+
+    public JoueurHumain(){
+        
+    }
+
+}
