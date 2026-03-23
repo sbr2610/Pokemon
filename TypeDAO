@@ -1,0 +1,38 @@
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TypeDAO {
+    public final static int GEN1 = 15;
+    private DatabaseManager dbm;
+
+    public TypeDAO() {
+        dbm = new DatabaseManager();
+        try {
+            dbm.connect();
+        } catch (SQLException e) {
+            System.out.println("Erreur : " + e.getMessage());
+        }
+    }
+
+    public List<Type> findAll() {
+        List<Type> types = new ArrayList<>();
+        String sql = "SELECT id, libelle FROM types WHERE id <= ?";
+
+        try (PreparedStatement ps = dbm.getConnection().prepareStatement(sql)) {
+            ps.setInt(1, GEN1);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                types.add(new Type(rs.getInt("id"), rs.getString("libelle")));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erreur : " + e.getMessage());
+        }
+
+        return types;
+    }
+}
