@@ -1,0 +1,41 @@
+public class JoueurHumain extends Joueur {
+    private int nbBadges;
+    private boolean[] badges;   
+    private int nbVictoires;
+
+    public JoueurHumain(String nom, String[] nomPokemon) {
+        super(nom, nomPokemon);
+        this.nbBadges  = 0;
+        this.badges    = new boolean[8];
+        this.nbVictoires = 0;
+    }
+
+    @Override
+public Attaque choisirAttaque(Pokemon attaquant, Pokemon cible) {
+    Scanner sc = new Scanner(System.in);
+    Attaque[] attaques = attaquant.getAttaques();
+
+    System.out.println("Choisissez une attaque :");
+    for (int i = 0; i < attaques.length; i++) {
+        System.out.println(i + " - " + attaques[i].getNom());
+    }
+
+    int choix = sc.nextInt();
+
+    // Sécurité : si le choix est invalide, on prend la première attaque
+    if (choix < 0 || choix >= attaques.length) choix = 0;
+
+    return attaques[choix];
+}
+
+public void gagnerBadge(int indexArene) {
+    if (!badges[indexArene]) {
+        badges[indexArene] = true;
+        nbBadges++;
+    }
+}
+
+public void ajouterVictoire() { nbVictoires++; }
+public int getNbBadges()      { return nbBadges; }
+public int getNbVictoires()   { return nbVictoires; }
+}
