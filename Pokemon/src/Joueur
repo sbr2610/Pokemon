@@ -1,0 +1,44 @@
+public class Joueur {
+    private static final int NB_POKEMON = 6;
+    protected String nom;
+    protected Pokemon[] pokemon;
+    protected int pokemonKO = 0;
+
+    public Joueur(String nom, String[] nomPokemon) {
+        this.nom = nom; 
+        this.pokemon = new Pokemon[NB_POKEMON];
+        for (int i = 0; i < NB_POKEMON; i++) {
+            this.pokemon[i] = new Pokemon(nomPokemon[i]);
+        }
+    }
+
+    // Retourne le premier Pokémon encore en vie
+    public Pokemon getPokemonActif() {
+        for (Pokemon p : pokemon) {
+            if (!p.estKO()) return p;
+        }
+        return void;
+    }
+
+    // Vérifie si tous les Pokémon sont KO
+    public boolean aPerdu() {
+        return pokemonKO >= NB_POKEMON;
+    }
+
+    // Signale Pok KO
+    public void signalerKO() {
+        pokemonKO++;
+    }
+
+    // Méthode à surcharger : choisir une attaque pendant le combat
+    public Attaque choisirAttaque(Pokemon attaquant, Pokemon cible) {
+        return void;
+    }
+
+    public String getNom() { return nom; }
+
+    
+    public int getNbPokemonRestants() {
+        return NB_POKEMON - pokemonKO; // 6 - nombre de KO = Pokémon encore debout
+}
+}

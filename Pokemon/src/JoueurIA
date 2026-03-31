@@ -1,0 +1,37 @@
+public Class JoueurIA{
+    private int arene;
+    private String nomArene;
+    private String nomVille;
+
+    public JoueurIA(){
+    
+    }
+}
+
+public class JoueurIA extends Joueur {
+    private int arene;
+    private String nomArene;
+    private String nomVille;
+
+    public JoueurIA(String nom, String[] nomPokemon,int arene, String nomArene, String nomVille) {
+        super(nom, nomPokemon);
+        this.arene    = arene;
+        this.nomArene = nomArene;
+        this.nomVille = nomVille;
+    }
+
+    // IA choisit auto lattaque la plus puissante
+    @Override
+    public Attaque choisirAttaque(Pokemon attaquant, Pokemon cible) {
+        Attaque[] attaques = attaquant.getAttaques();
+        Attaque meilleure  = attaques[0];
+
+        for (Attaque a : attaques) {
+            if (a.getPuissance() > meilleure.getPuissance()) {
+                meilleure = a;
+            }
+        }
+        return meilleure;
+    }
+   
+}
